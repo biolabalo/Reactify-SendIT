@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignInform Component renders correctly 1`] = `
+<form
+  className="sign-up"
+  onSubmit={[Function]}
+>
+  <div
+    className="space"
+  >
+    <h1>
+       SIGN UP 
+    </h1>
+  </div>
+  <br />
+  <label>
+    Fullname:
+  </label>
+  <br />
+  <input
+    autoComplete="off"
+    className="fullname"
+    id="fullname"
+    name="fullname"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="Enter Your Fullname"
+    required={true}
+    value=""
+  />
+  <br />
+  <br />
+  <label>
+    Email:
+  </label>
+  <br />
+  <input
+    autoComplete="off"
+    className="Email"
+    name="email"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="Enter Your Email"
+    required={true}
+    type="email"
+    value=""
+  />
+  <br />
+  <br />
+  <label>
+    Password:
+  </label>
+  <br />
+  <input
+    autoComplete="new-password"
+    className="password"
+    id="signupPassword"
+    name="password"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="Enter Your Password"
+    required={true}
+    type="password"
+    value=""
+  />
+  <br />
+  <br />
+  <br />
+  <label>
+    Confirm Password:
+  </label>
+  <br />
+  <input
+    autoComplete="off"
+    className="password"
+    id="confirmPassword"
+    name="confirmpassword"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="Confirm Password"
+    required={true}
+    type="password"
+    value=""
+  />
+  <br />
+  <br />
+  <br />
+  <button
+    className="sub-btn"
+    type="submit"
+  >
+     
+    <span
+      className="sweet-loading"
+    />
+    Submit 
+  </button>
+  <p>
+    Sign In as 
+    <a
+      href="/AdminSignIn"
+      onClick={[Function]}
+    >
+      Admin 
+    </a>
+  </p>
+  <p>
+    Already Created An Account  
+    <a
+      href="/SignIn"
+      onClick={[Function]}
+    >
+      Sign In 
+    </a>
+  </p>
+  <small>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+         
+      <span>
+         Home →
+      </span>
+        
+    </a>
+  </small>
+</form>
+`;

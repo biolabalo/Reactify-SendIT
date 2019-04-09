@@ -10,7 +10,6 @@ import TopBarProgress from 'react-topbar-progress-indicator';
 import '../css/All-singleOrder.css';
 import '../css/body.css';
 import '../css/Animate.css';
-import jwt_decode from 'jwt-decode';
 import { connect } from 'react-redux';
 import Spinner from 'react-spinkit';
 import Navbar from './Navbar';

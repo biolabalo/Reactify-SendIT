@@ -6,8 +6,8 @@ import { css } from '@emotion/core';
 import { ClipLoader } from 'react-spinners';
 import { Link, withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
-import { validateInputs } from '../../../Validation/validateInputs';
-import validateBeforeSubmission from '../../../Validation/validateB4Submission';
+import { validateInputs } from '../../Validation/validateInputs';
+import validateBeforeSubmission from '../../Validation/validateB4Submission';
 
 
 class SignUpForm extends Component {
@@ -79,10 +79,17 @@ handleSubmit = async (e) => {
     });
     const res = await response.json();
     if (res.message === 'User with that EMAIL already exist') {
+      this.setState({
+        loading: false,
+        isShowFullnameError: false,
+        isShowEmailError: false,
+        isShowPasswordError: false,
+        isConfirmPasswordNotEqualPassword: false,
+      });
       return swal({ icon: 'warning', title: 'User with that EMAIL already exist' });
     }
     if (res.status === 201) {
-      swal({ icon: 'success', title: 'Successfully signed Up' });
+      swal({ icon: 'success', title: 'Successfully signed Up. Log In with your credentials' });
       this.props.history.push('/SignIn');
     } else {
       // eslint-disable-next-line consistent-return
@@ -90,18 +97,15 @@ handleSubmit = async (e) => {
       return swal({ icon: 'warning', title: 'Sign Up Failed Try Again' });
     }
   } catch (err) {
-    swal({ icon: 'warning', title: 'Network Error' });
+    console.log(err);
     this.setState({
-      email: '',
-      password: '',
-      fullname: '',
-      confirmpassword: '',
+      loading: false,
       isShowFullnameError: false,
       isShowEmailError: false,
       isShowPasswordError: false,
       isConfirmPasswordNotEqualPassword: false,
-      loading: false,
     });
+    swal({ icon: 'warning', title: 'Network Error' });
   }
 }
 

@@ -4,15 +4,12 @@ import Navbar from './Navbar';
 import '../css/App.css';
 
 
-const Homepage = () => (<div>
+const Homepage = () => (<div className = "Abiola">
     <Navbar name='homepage'/>
-    <main className="main-wrap">
-
-    </main>
+    <main className="main-wrap"></main>
 
     <div id="quote">
         <blockquote>
-
             SendIT is a leading logistics and distribution s        ervices company
                               established in 2009. We offer a wide array of express courier and logistic
                 support solutions to our various customers.</blockquote>

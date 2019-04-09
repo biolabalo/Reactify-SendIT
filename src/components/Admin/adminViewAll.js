@@ -11,7 +11,6 @@ import TopBarProgress from 'react-topbar-progress-indicator';
 import '../../css/All-singleOrder.css';
 import '../../css/body.css';
 import '../../css/Animate.css';
-import jwt_decode from 'jwt-decode';
 import { connect } from 'react-redux';
 import Spinner from 'react-spinkit';
 import Navbar from '../Navbar';
@@ -31,7 +30,15 @@ class AdminViewAllOrders extends Component {
     modalDisplay: false,
     parcelId: '',
     allOrders: this.props.userOrders,
+    currentPage: 1,
+    parcelsPerPage: 8,
   };
+
+  handleClick= (event) => {
+    this.setState({
+      currentPage: Number(event.target.id),
+    });
+  }
 
   componentWillMount() {
     this.setState({ allOrders: this.props.userOrders });
@@ -81,19 +88,39 @@ class AdminViewAllOrders extends Component {
 
   render() {
     let final_content = '';
-
-    const { isAuthenticated, user } = this.props.auth;
-
+    const { currentPage, parcelsPerPage } = this.state;
     const { userOrders, loading } = this.props.userOrders;
-
     let userOrdersContent;
+    let renderPageNumbers;
 
     if (userOrders === null || loading) {
       final_content = <Spinner name="line-scale" color="steelblue" />;
     } else if (userOrders !== null || !loading) {
       // eslint-disable-next-line no-lonely-if
       if (userOrders.length > 0) {
-        userOrdersContent = userOrders.reverse().map((each, index) => (
+        // Logic for displaying current todos
+        const indexOfLastTodo = currentPage * parcelsPerPage;
+        const indexOfFirstTodo = indexOfLastTodo - parcelsPerPage;
+        const currentTodos = userOrders.slice(indexOfFirstTodo, indexOfLastTodo);
+
+        // Logic for displaying page numbers
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(userOrders.length / parcelsPerPage); i += 1) {
+          pageNumbers.push(i);
+        }
+
+        renderPageNumbers = pageNumbers.map(number => (
+            <li
+              key={number}
+              id={number}
+              onClick={this.handleClick}
+            >
+              {number}
+            </li>
+        ));
+        const adminChangeDestinationModal = <Modalo modalDisplay = {this.state.modalDisplay}/>;
+
+        userOrdersContent = currentTodos.map((each, index) => (
           <tr key={index} className="table_row_style">
             <td>{each.item_name}</td>
             <td>{each.pickup_address}</td>
@@ -157,7 +184,10 @@ class AdminViewAllOrders extends Component {
       <div>
         {userOrders === null || loading ? <TopBarProgress /> : ''}
         <Navbar name="adminViewAllOrders" />
-        <div className="all-orders-container">{final_content}</div>
+        <div className="all-orders-container">
+        {final_content}
+        </div>
+        <ul className = "paginator">{renderPageNumbers}</ul>
       </div>
     );
   }

@@ -8,8 +8,7 @@ import { css } from '@emotion/core';
 import Spinner from 'react-spinkit';
 import Script from 'react-load-script';
 import { ClipLoader } from 'react-spinners';
-import { Link, withRouter } from 'react-router-dom';
-import swal from 'sweetalert';
+import { withRouter } from 'react-router-dom';
 import '../css/createOrder.css';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
@@ -226,5 +225,5 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 export default connect(mapStateToProps, { createParcelOrder })(
-  withRouter(CreateOrder),
+  CreateOrder,
 );
