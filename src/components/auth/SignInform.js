@@ -10,8 +10,8 @@ import TopBarProgress from 'react-topbar-progress-indicator';
 import { css } from '@emotion/core';
 import { ClipLoader } from 'react-spinners';
 import { connect } from 'react-redux';
-import { validateInputs } from '../../../Validation/validateInputs';
-import validateLoginB4Submission from '../../../Validation/login';
+import { validateInputs } from '../../Validation/validateInputs';
+import validateLoginB4Submission from '../../Validation/login';
 import { loginUser } from '../../actions/authActions';
 
 TopBarProgress.config({
@@ -64,19 +64,11 @@ handleSubmit = (e) => {
   e.preventDefault();
   const Data = this.state;
   const result = validateLoginB4Submission(Data);
-  if (!result) {
-    return swal({
-      icon: 'warning',
-      title: 'Inputs Must be Valid Before Submission',
-    });
-  }
+  if (!result) return swal({ icon: 'warning', title: 'Inputs Must be Valid Before Submission' });
   this.ShowSpinner();
-  // Clear State
+
   this.setState({
-    email: '',
-    password: '',
-    isShowEmailError: false,
-    isShowPasswordError: false,
+    email: '', password: '', isShowEmailError: false, isShowPasswordError: false,
   });
   this.props.loginUser(Data);
 };

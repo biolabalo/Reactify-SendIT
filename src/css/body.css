@@ -1,0 +1,23 @@
+body{
+    background-color: #efefef;
+  }
+  .all-orders-container{
+       width: auto;
+       padding: 10px;
+      }
+
+.paginator{
+  margin: 0 auto;
+  width: 10%;
+  top: 0;
+  bottom: 0;
+}
+
+.paginator li {
+  background-color: yellowgreen;
+  padding: 10px;
+  cursor: pointer;
+}
+.paginator li:hover{
+  background-color: yellow;
+}

@@ -13,7 +13,7 @@ import { ClipLoader } from 'react-spinners';
 import { connect } from 'react-redux';
 import { validateInputs } from '../../../Validation/validateInputs';
 import validateLoginB4Submission from '../../../Validation/login';
-import { LoginAdmin } from '../../actions/authActions';
+import { loginUser } from '../../actions/authActions';
 
 TopBarProgress.config({
   barColors: {
@@ -79,7 +79,7 @@ handleSubmit = (e) => {
     isShowEmailError: false,
     isShowPasswordError: false,
   });
-  this.props.LoginAdmin(adminData);
+  this.props.loginUser(adminData);
 };
 
 render() {
@@ -98,7 +98,7 @@ render() {
   margin-right:10px;
   border-color: red;
 `;
-  const isflyingSpinner = <Spinner name="wandering-cubes" color="black"/>;
+
   const spinner = (<span className='sweet-loading'>
 <ClipLoader
 css={override}
@@ -169,4 +169,4 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { LoginAdmin })(withRouter(AdminSignInForm));
+export default connect(mapStateToProps, { loginUser })(withRouter(AdminSignInForm));

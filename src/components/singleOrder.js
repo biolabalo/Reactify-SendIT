@@ -9,13 +9,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from 'react-spinkit';
 import TopBarProgress from 'react-topbar-progress-indicator';
-import Modal from 'react-modal';
 import swal from 'sweetalert';
 import Navbar from './Navbar';
 import { getLoggedSingleOrder, cancelParcelOrder } from '../actions/userActions';
 import GoogleApiWrapper from './googleMap/googleMap';
 import '../css/All-singleOrder.css';
 import ChangeDestinationModal from './modals/changeDestination';
+import finalCon from './Admin/finalContent';
 
 TopBarProgress.config({
   barColors: {
@@ -67,61 +67,14 @@ class singleOrder extends Component {
       } else if (data !== null && !loading) {
 
         const dataPassedToGoogleMaps = data;
-
         buttonActions = (data.status === 'Placed' || data.status === 'In Transit') ? (<div className="cancel-change-destination">
-
         <button id= "cancel_Order" onClick={this.showSwal}>Cancel Order</button>
-
         <button id="change_Direction" onClick={this.showModal.bind(this)} > Change Destination</button>
       </div>) : '';
 
         map = <GoogleApiWrapper dataPassedToGoogleMaps = {dataPassedToGoogleMaps} />;
-
         changeDestinationModal = <ChangeDestinationModal modalDisplay = {this.state.modalDisplay} orderId ={id}/>;
-
-        finalContent = (
-<table className ="single-order animated slideInLeft">
-<tbody>
-<tr></tr>
-<tr>
-  <td><b>Item Name</b></td>
-  <td>{data.item_name}</td>
-</tr>
-
-<tr>
-   <td><b>Status</b></td>
-  <td><span className={data.status}>{data.status}</span></td>
-</tr>
-
-<tr>
-  <td> <b>Destination</b></td>
-  <td>{data.destination_address}</td>
-</tr>
-
-<tr>
-  <td><b>Pickup Address</b></td>
-  <td>{data.pickup_address} </td>
-</tr>
-
-<tr>
-  <td><b>Current location</b></td>
-  <td> {data.currentlocation} </td>
-</tr>
-<tr>
-  <td><b>Receiver Name</b></td>
-  <td>{data.receiver_name} </td>
-</tr>
-<tr>
-  <td><b>Receiver Email</b></td>
-  <td>{data.receiver_email} </td>
-</tr>
-<tr>
-  <td><b>Item Weight</b></td>
-  <td>{data.item_weight} </td>
-</tr>
-
-</tbody>
-</table>);
+        finalContent = finalCon(data);
       }
       
       return (

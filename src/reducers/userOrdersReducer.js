@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  // eslint-disable-next-line no-console
   switch (action.type) {
     case 'USER_ORDERS_LOADING':
       return {
