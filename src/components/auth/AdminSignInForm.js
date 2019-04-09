@@ -11,8 +11,8 @@ import TopBarProgress from 'react-topbar-progress-indicator';
 import { css } from '@emotion/core';
 import { ClipLoader } from 'react-spinners';
 import { connect } from 'react-redux';
-import { validateInputs } from '../../../Validation/validateInputs';
-import validateLoginB4Submission from '../../../Validation/login';
+import { validateInputs } from '../../Validation/validateInputs';
+import validateLoginB4Submission from '../../Validation/login';
 import { loginUser } from '../../actions/authActions';
 
 TopBarProgress.config({

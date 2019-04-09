@@ -6,7 +6,6 @@ import jwt_decode from 'jwt-decode';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import setAuthToken from './utils/setAuthToken';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/404';
 import SignIn from './components/auth/SignIn';
@@ -21,8 +20,6 @@ import store from './store';
 
 // Check for token
 if (localStorage.authToken) {
-  // Set auth token header auth
-  setAuthToken(localStorage.authToken);
   // Decode token and get user info and exp
   const decoded = jwt_decode(localStorage.authToken);
   // Set user and isAuthenticated
